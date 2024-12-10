@@ -10,6 +10,21 @@ MAE: str = "MAE"
 NDCG: str = "NDCG:top=-1;type=Base;denominator=LogPosition"
 
 
+def plot_eval_results(model_name: str, model: CatBoost) -> None:
+    """Plot metrics per iterations during training."""
+    eval_results = model.get_evals_result()
+
+    for k, metrics in list(eval_results.items()):
+        for m, y in list(metrics.items()):
+            plt.plot(y, label=k + "-" + m)
+    plt.legend()
+    # plt.xlabel("Iterations (/200)")
+    # plt.ylabel("Loss")
+    plt.legend()
+    plt.title(model_name)
+    plt.show()
+
+
 def _get_flat_shap_values(m: CatBoost, pool: Pool) -> list:
     # Get SHAP values
     shap_values = m.get_feature_importance(pool, EFstrType.ShapValues)
