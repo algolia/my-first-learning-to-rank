@@ -21,9 +21,7 @@ def _group_per_query(dataset: pd.DataFrame) -> pd.DataFrame:
         )[pool_features]
         .apply(lambda x: x.to_dict("records"))
         .reset_index()
-        .rename(
-            columns={0: "data"}
-        )  # FIXME I think drop=True) in reset index does the same
+        .rename(columns={0: "data"})
     )
 
     return grouped_per_query

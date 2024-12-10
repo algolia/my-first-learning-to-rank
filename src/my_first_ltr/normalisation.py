@@ -3,16 +3,12 @@ import pandas as pd
 from nltk.tokenize import word_tokenize
 from nltk import download
 
-# from nltk.corpus import stopwords
-# from nltk.stem import PorterStemmer
-
 # Download necessary NLTK data
 download("punkt")
 download("punkt_tab")
 download("stopwords")
 
 
-# FIXME: normalize query, attribute is query as you type
 def normalize(text: str) -> str:
     # Convert to lowercase
     text = text.lower()
@@ -25,12 +21,6 @@ def normalize(text: str) -> str:
 def tokenize(text: str) -> list[str]:
     # Tokenize text
     tokens = word_tokenize(text)
-    # Remove stopwords
-    # stop_words = set(stopwords.words('english'))
-    # tokens = [word for word in tokens if word not in stop_words]
-    # Stemming
-    # stemmer = PorterStemmer()
-    # tokens = [stemmer.stem(word) for word in tokens]
     return tokens
 
 
